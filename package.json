@@ -3,7 +3,8 @@
     "version": "0.0.0",
     "private": true,
     "scripts": {
-        "start": "nodemon ./bin/www"
+        "build:watch": "tsc -w -p tsconfig.json",
+        "start:dev": "nodemon --config nodemon.json"
     },
     "dependencies": {
         "cookie-parser": "~1.4.4",
@@ -13,6 +14,10 @@
         "http-errors": "~1.6.3",
         "morgan": "~1.9.1",
         "nodemon": "^2.0.19",
-        "socket.io": "^4.5.1"
+        "socket.io": "^4.5.1",
+        "tsc": "^2.0.4"
+    },
+    "devDependencies": {
+        "typescript": "^4.7.4"
     }
 }
