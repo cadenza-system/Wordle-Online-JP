@@ -1,7 +1,7 @@
 <template>
-<div id="app">
-    <game></game>
-</div>
+    <div id="game">
+        <game-template></game-template>
+    </div>
 </template>
 <script>
     module.exports = {
@@ -11,7 +11,7 @@
             }
         },
         components: {
-            'game': httpVueLoader('./pages/game.vue'),
+            'game-template': httpVueLoader('../templates/game-template.vue'),
         },
     }
 </script>

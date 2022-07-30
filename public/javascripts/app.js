@@ -1,6 +1,6 @@
-var app = new Vue({
+let app = new Vue({
     el: '#app',
     components: {
-        'app': httpVueLoader('./components/app.vue'),
+        'App': httpVueLoader('./components/app.vue'),
     },
 });
