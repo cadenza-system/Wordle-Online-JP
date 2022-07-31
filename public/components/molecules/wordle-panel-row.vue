@@ -1,17 +1,17 @@
 <template>
 <div id="wordle-panel-row">
-    <wordle-panel class="panel"></wordle-panel>
-    <wordle-panel class="panel"></wordle-panel>
-    <wordle-panel class="panel"></wordle-panel>
-    <wordle-panel class="panel"></wordle-panel>
-    <wordle-panel class="panel"></wordle-panel>
+    <wordle-panel class="panel" :size="panelSize"></wordle-panel>
+    <wordle-panel class="panel" :size="panelSize"></wordle-panel>
+    <wordle-panel class="panel" :size="panelSize"></wordle-panel>
+    <wordle-panel class="panel" :size="panelSize"></wordle-panel>
+    <wordle-panel class="panel" :size="panelSize"></wordle-panel>
 </div>
 </template>
 <script>
     module.exports = {
         data: function(){
             return {
-                msg: "Hellow from Vue",
+                panelSize: '3.5vw',
             }
         },
         components: {

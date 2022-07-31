@@ -1,7 +1,7 @@
 <template>
-<div id="toggle-button" v-bind:style="style">
-    <div class="button" v-bind:class="{'on': !toggled, 'off': toggled}" v-on:click="clickLeft()">{{ textLeft }}</div>
-    <div class="button" v-bind:class="{'on': toggled, 'off': !toggled}" v-on:click="clickRight()">{{ textRight }}</div>
+<div id="toggle-button" :style="style">
+    <div class="button" :class="{'on': !toggled, 'off': toggled}" v-on:click="clickLeft()">{{ textLeft }}</div>
+    <div class="button" :class="{'on': toggled, 'off': !toggled}" v-on:click="clickRight()">{{ textRight }}</div>
 </div>
 </template>
 <script>
@@ -20,16 +20,18 @@
         props: ['text-left', 'text-right', 'width'],
         methods: {
             clickLeft: function() {
-                if(this.toggled) {
+                if (this.toggled) {
                     this.toggled = false
+                    this.$emit('toggle', false)
                 }
             },
             clickRight: function() {
-                if(!this.toggled) {
+                if (!this.toggled) {
                     this.toggled = true
+                    this.$emit('toggle', true)
                 }
-            }
-        }
+            },
+        },
     }
 </script>
 <style scoped>
