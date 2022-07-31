@@ -1,8 +1,6 @@
 <template>
-<div id="keyboard-key">
-    <button>
-        {{ text }}
-    </button>
+<div id="keyboard-key" @click="onclick()">
+    {{ text }}
 </div>
 </template>
 <script>
@@ -16,6 +14,11 @@
             'wordle-panel-row': httpVueLoader('../molecules/wordle-panel-row.vue'),
         },
         props: ['value'],
+        methods: {
+            onclick() {
+                this.$emit('push', this.text)
+            }
+        },
         created: function(){
             if (!this.value) {
                 this.text = '　'
@@ -27,10 +30,13 @@
     }
 </script>
 <style scoped>
-button {
+#keyboard-key {
     background-color: white;
-    width: 2.5vw;
-    height: 2.5vw;
+    width: 2.3vw;
+    height: 2.3vw;
     border-radius: 15%;
+    user-select: none;
+    cursor: pointer;
+    cursor: hand;
 }
 </style>

@@ -40,7 +40,6 @@
     user-select: none;
     cursor: pointer;
     cursor: hand;
-    width: v-bind(width);
 }
 
 .button {

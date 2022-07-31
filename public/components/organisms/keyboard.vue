@@ -7,15 +7,15 @@
     </div>
     <div class="keys">
         <div class="column" v-for="(row, i) in keys" v-bind:key="i + row.a">
-                <keyboard-key class="key" :value="row.a"></keyboard-key>
-                <keyboard-key class="key" :value="row.i"></keyboard-key>
-                <keyboard-key class="key" :value="row.u"></keyboard-key>
-                <keyboard-key class="key" :value="row.e"></keyboard-key>
-                <keyboard-key class="key" :value="row.o"></keyboard-key>
+                <keyboard-key class="key" :value="row.a" @push="pushKey"></keyboard-key>
+                <keyboard-key class="key" :value="row.i" @push="pushKey"></keyboard-key>
+                <keyboard-key class="key" :value="row.u" @push="pushKey"></keyboard-key>
+                <keyboard-key class="key" :value="row.e" @push="pushKey"></keyboard-key>
+                <keyboard-key class="key" :value="row.o" @push="pushKey"></keyboard-key>
         </div>
     </div>
     <div class="anser-area">
-        <anser-area></anser-area>
+        <anser-area ref="anser"></anser-area>
     </div>
 </div>
 </template>
@@ -61,6 +61,9 @@
                     this.$set(this.keys, 8 ,{a: '', i: '', u: '', e: '', o: ''})
                     this.$set(this.keys, 9 ,{a: '', i: '', u: '', e: '', o: ''})
                 }
+            },
+            pushKey(value) {
+                this.$refs.anser.setValue(value)
             }
         },
         mounted() {

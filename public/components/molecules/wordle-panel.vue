@@ -16,17 +16,14 @@
                 }
             }
         },
-        props: ['size'],
+        props: ['size', 'value'],
         methods: {
-            setText(text) {
-                this.text = text
+            setValue(value) {
+                this.text = value
             },
-            getText() {
-                return this.text
-            }
         },
         mounted() {
-            console.log(this.size)
+            this.text = this.value
         }
     }
 </script>

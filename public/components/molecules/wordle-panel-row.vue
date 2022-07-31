@@ -11,7 +11,8 @@
     module.exports = {
         data: function(){
             return {
-                panelSize: '3.5vw',
+                anser: [' ', ' ', ' ', ' ', ' '],
+                panelSize: '3vw',
             }
         },
         components: {
