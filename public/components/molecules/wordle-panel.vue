@@ -1,6 +1,6 @@
 <template>
 <div id="wordle-panel">
-    <div class="box" :style="style">
+    <div class="box" :style="style" :class="color">
         {{ text }}
     </div>
 </div>
@@ -16,7 +16,7 @@
                 }
             }
         },
-        props: ['size', 'value'],
+        props: ['size', 'value', 'color'],
         methods: {
             setValue(value) {
                 this.text = value
@@ -35,9 +35,17 @@
 <style scoped>
 .box {
     border-radius: 15%;
-    background-color: white;
     border-width: calc(3.5vw * 8 / 100);
     border-style: solid;
     border-color: lightgray;
+    background-color: white;
+}
+
+.green {
+    background-color: greenyellow;
+}
+
+.yellow {
+    background-color: yellow;
 }
 </style>

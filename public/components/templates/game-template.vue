@@ -2,8 +2,8 @@
     <div id="game-template">
         <app-header></app-header>
         <div class="content">
-            <wordle-board class="wordle-board"></wordle-board>
-            <wordle-keyboard class="wordle-keyboard"></wordle-keyboard>
+            <wordle-board class="wordle-board" ref="board" correct-anser="アリガトウ"></wordle-board>
+            <wordle-keyboard class="wordle-keyboard" @enter="enter"></wordle-keyboard>
         </div>
     </div>
 </template>
@@ -18,6 +18,11 @@
             'wordle-board': httpVueLoader('../organisms/wordle-board.vue'),
             'wordle-keyboard': httpVueLoader('../organisms/keyboard.vue')
         },
+        methods: {
+            enter(anser) {
+                this.$refs.board.setAnser(anser)
+            }
+        }
     }
 </script>
 <style scoped>

@@ -15,7 +15,7 @@
         </div>
     </div>
     <div class="anser-area">
-        <anser-area ref="anser"></anser-area>
+        <anser-area ref="anser" @enter="enter"></anser-area>
     </div>
 </div>
 </template>
@@ -68,6 +68,9 @@
             },
             backspace() {
                 this.$refs.anser.backspace()
+            },
+            enter(anser) {
+                this.$emit('enter', anser)
             }
         },
         mounted() {

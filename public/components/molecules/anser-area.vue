@@ -7,7 +7,7 @@
         <wordle-panel :size="size" :value="anser[3]"></wordle-panel>
         <wordle-panel :size="size" :value="anser[4]"></wordle-panel>
     </div>
-    <button>ENTER</button>
+    <enter @click="enter"></enter>
 </div>
 </template>
 <script>
@@ -20,6 +20,7 @@
         },
         components: {
             'wordle-panel': httpVueLoader('./wordle-panel.vue'),
+            'enter': httpVueLoader('./enter.vue'),
         },
         methods: {
             setValue(value) {
@@ -30,6 +31,13 @@
             },
             backspace() {
                 this.anser.pop()
+            },
+            enter() {
+                if (this.anser.length != 5) {
+                    return
+                }
+                this.$emit('enter', this.anser)
+                this.anser = []
             }
         }
     }
