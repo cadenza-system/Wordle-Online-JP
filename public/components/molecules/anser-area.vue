@@ -14,7 +14,7 @@
     module.exports = {
         data: function(){
             return {
-                size: '5vh',
+                size: '4vh',
                 anser: []
             }
         },
@@ -46,7 +46,7 @@
 #anserArea {
     display: flex;
     justify-content: space-around;
-
+    align-items: center;
 }
 .anser {
     display: flex;

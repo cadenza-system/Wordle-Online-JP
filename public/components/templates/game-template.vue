@@ -3,7 +3,12 @@
         <app-header></app-header>
         <div class="content">
             <wordle-board class="wordle-board" ref="board" correct-anser="アリガトウ"></wordle-board>
-            <wordle-keyboard class="wordle-keyboard" @enter="enter"></wordle-keyboard>
+            <div class="bottom-row">
+                <div class="bottom-row-inner">
+                    <player-list></player-list>
+                    <wordle-keyboard class="wordle-keyboard" @enter="enter"></wordle-keyboard>
+                </div>
+            </div>
         </div>
     </div>
 </template>
@@ -16,7 +21,8 @@
         components: {
             'app-header': httpVueLoader('../organisms/header.vue'),
             'wordle-board': httpVueLoader('../organisms/wordle-board.vue'),
-            'wordle-keyboard': httpVueLoader('../organisms/keyboard.vue')
+            'wordle-keyboard': httpVueLoader('../organisms/keyboard.vue'),
+            'player-list': httpVueLoader('../organisms/player-list.vue'),
         },
         methods: {
             enter(anser) {
@@ -30,16 +36,24 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: pink;
     height: 92vh;
     margin:0 3vw;
 }
 
 .wordle-board {
-    height: 60%;
+    height: 55%;
 }
 
-.wordle-keyboard {
-    height: 40%;
+.bottom-row {
+    display: flex;
+    justify-content:center;
+    width: 100%;
+    height: 45%;
+}
+.bottom-row-inner {
+    display: flex;
+    justify-content:space-around;
+    width: 60%;
+    height: 100%;
 }
 </style>

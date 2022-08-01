@@ -9,7 +9,7 @@
     module.exports = {
         data: function(){
             return {
-                limit: 24,
+                limit: 18,
                 correctAnserArr: []
             }
         },
@@ -36,12 +36,11 @@
 </script>
 <style scoped>
 #wordle-board {
-    background-color: coral;
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
     flex-wrap: wrap;
     width: 100%;
+    padding-top: 1vh;
 }
 </style>

@@ -40,7 +40,6 @@
     user-select: none;
     cursor: pointer;
     cursor: hand;
-
 }
 
 .button {
@@ -61,6 +60,6 @@
 }
 
 .off {
-    background-color: white;
+    background-color: whitesmoke;
 }
 </style>

@@ -37,13 +37,15 @@
 </script>
 <style scoped>
 #keyboard-key {
-    background-color: white;
+    background-color: whitesmoke;
     width: 2.3vw;
-    height: 2.3vw;
+    height: 2.6vw;
     border-radius: 15%;
     user-select: none;
     cursor: pointer;
     cursor: hand;
+    text-align: center;
+    line-height: 2.6vw;
 }
 
 .blank {

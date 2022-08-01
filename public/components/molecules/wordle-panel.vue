@@ -12,7 +12,8 @@
                 text: '',
                 style: {
                     width: this.size,
-                    height: this.size
+                    height: this.size,
+                    lineHeight: this.size
                 }
             }
         },
@@ -34,11 +35,12 @@
 </script>
 <style scoped>
 .box {
-    border-radius: 15%;
-    border-width: calc(3.5vw * 8 / 100);
+    border-width: calc(3.5vw * 5 / 100);
     border-style: solid;
+    text-align: center;
     border-color: lightgray;
     background-color: white;
+    user-select: none;
 }
 
 .green {

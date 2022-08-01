@@ -20,8 +20,7 @@
 </script>
 <style scoped>
 #button {
-    background-color: white;
-    border-radius: 15%;
+    background-color: whitesmoke;
     user-select: none;
     cursor: pointer;
     cursor: hand;

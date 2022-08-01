@@ -80,7 +80,9 @@
 </script>
 <style scoped>
 #wordle-keyboard {
-    background-color: aquamarine;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
 }
 
 .keys {
