@@ -40,6 +40,7 @@
     text-align: center;
     border-color: lightgray;
     background-color: white;
+    font-weight: bold;
     user-select: none;
 }
 

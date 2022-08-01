@@ -5,7 +5,6 @@
     <player-info></player-info>
     <player-info></player-info>
     <player-info></player-info>
-    <player-info></player-info>
 </div>
 </template>
 <script>
@@ -25,7 +24,6 @@
     flex-wrap: wrap;
     width: 20vw;
     height: 100%;
-    justify-content: space-around;
     align-items: center;
 }
 </style>

@@ -1,15 +1,11 @@
 <template>
 <div id="app">
-    <game></game>
+        <router-view></router-view>
+    <!-- <game></game> -->
 </div>
 </template>
 <script>
     module.exports = {
-        data: function(){
-            return {
-                msg: "Hellow from Vue",
-            }
-        },
         components: {
             'game': httpVueLoader('./pages/game.vue'),
         },

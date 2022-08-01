@@ -1,6 +1,6 @@
 <template>
 <div id="keyboard-key" @click="onclick()" :class="{'blank': isBlank()}">
-    {{ text }}
+        {{ text }}
 </div>
 </template>
 <script>
@@ -11,7 +11,7 @@
             }
         },
         components: {
-            'wordle-panel-row': httpVueLoader('../molecules/wordle-panel-row.vue'),
+            'label': httpVueLoader('../atoms/label.vue'),
         },
         props: ['value'],
         methods: {
@@ -46,6 +46,7 @@
     cursor: hand;
     text-align: center;
     line-height: 2.6vw;
+    font-weight: bold;
 }
 
 .blank {

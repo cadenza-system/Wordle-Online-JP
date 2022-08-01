@@ -7,15 +7,18 @@
 </template>
 <style scoped>
 #header {
-    background-color: rgb(160, 160, 160);
+    background-color: white;
     height: 8vh;
+    text-align: center;
+    border-style: solid;
+    border-bottom-width: 1px;
+    border-color: lightgray;
 }
 
 .logo {
     font-size: 1.4rem;
     line-height: 8vh;
-    color: whitesmoke;
     font-weight: bold;
-    margin-left: 3vw;
+    user-select: none;
 }
 </style>
