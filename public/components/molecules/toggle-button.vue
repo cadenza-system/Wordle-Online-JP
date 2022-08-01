@@ -1,7 +1,7 @@
 <template>
 <div id="toggle-button" :style="style">
-    <div class="button" :class="{'on': !toggled, 'off': toggled}" v-on:click="clickLeft()">{{ textLeft }}</div>
-    <div class="button" :class="{'on': toggled, 'off': !toggled}" v-on:click="clickRight()">{{ textRight }}</div>
+    <div class="button left" :class="{'on': !toggled, 'off': toggled}" v-on:click="clickLeft()">{{ textLeft }}</div>
+    <div class="button right" :class="{'on': toggled, 'off': !toggled}" v-on:click="clickRight()">{{ textRight }}</div>
 </div>
 </template>
 <script>
@@ -40,6 +40,7 @@
     user-select: none;
     cursor: pointer;
     cursor: hand;
+
 }
 
 .button {
@@ -47,6 +48,14 @@
     text-align: center;
 }
 
+.left {
+    border-top-left-radius: 15%;
+    border-bottom-left-radius: 15%;
+}
+.right {
+    border-top-right-radius: 15%;
+    border-bottom-right-radius: 15%;
+}
 .on {
     background-color: lightgray;
 }

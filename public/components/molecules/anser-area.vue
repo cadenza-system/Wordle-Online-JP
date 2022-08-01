@@ -27,7 +27,9 @@
                     return
                 }
                 this.anser.push(value)
-                console.log(this.anser)
+            },
+            backspace() {
+                this.anser.pop()
             }
         }
     }

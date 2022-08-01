@@ -11,7 +11,6 @@
     module.exports = {
         data: function(){
             return {
-                msg: "Hellow from Vue",
             }
         },
         components: {

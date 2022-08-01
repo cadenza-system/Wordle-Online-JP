@@ -1,5 +1,5 @@
 <template>
-<div id="keyboard-key" @click="onclick()">
+<div id="keyboard-key" @click="onclick()" :class="{'blank': isBlank()}">
     {{ text }}
 </div>
 </template>
@@ -16,7 +16,13 @@
         props: ['value'],
         methods: {
             onclick() {
+                if (this.isBlank()) {
+                    return
+                }
                 this.$emit('push', this.text)
+            },
+            isBlank() {
+                return this.text == '　'
             }
         },
         created: function(){
@@ -38,5 +44,10 @@
     user-select: none;
     cursor: pointer;
     cursor: hand;
+}
+
+.blank {
+    cursor: default !important;
+    opacity: 0;
 }
 </style>

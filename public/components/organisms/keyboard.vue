@@ -3,7 +3,7 @@
     <div class="buttons">
         <toggle-button class="toggle-button" text-left="通常" text-right="゛゜小" width="33%" @toggle="toggleKeyboard"></toggle-button>
             <button>ギブアップ</button>
-            <button>Backspace</button>
+            <backspace @click="backspace"></backspace>
     </div>
     <div class="keys">
         <div class="column" v-for="(row, i) in keys" v-bind:key="i + row.a">
@@ -30,7 +30,8 @@
         components: {
             'keyboard-key': httpVueLoader('../molecules/keyboard-key.vue'),
             'toggle-button': httpVueLoader('../molecules/toggle-button.vue'),
-            'anser-area': httpVueLoader('../molecules/anser-area.vue')
+            'anser-area': httpVueLoader('../molecules/anser-area.vue'),
+            'backspace': httpVueLoader('../molecules/backspace.vue'),
         },
         methods: {
             toggleKeyboard(showAnotherKeys) {
@@ -64,6 +65,9 @@
             },
             pushKey(value) {
                 this.$refs.anser.setValue(value)
+            },
+            backspace() {
+                this.$refs.anser.backspace()
             }
         },
         mounted() {
@@ -75,7 +79,6 @@
 #wordle-keyboard {
     background-color: aquamarine;
 }
-
 
 .keys {
     display: flex;

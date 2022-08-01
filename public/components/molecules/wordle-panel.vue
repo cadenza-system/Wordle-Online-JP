@@ -24,6 +24,11 @@
         },
         mounted() {
             this.text = this.value
+        },
+        watch: {
+            value: function(from) {
+                this.text = from
+            }
         }
     }
 </script>
