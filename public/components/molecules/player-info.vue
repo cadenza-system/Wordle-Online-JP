@@ -1,10 +1,12 @@
 <template>
 <div id="player-info">
-    <icon></icon>
+    <icon :color="player.color"></icon>
     <div class="player-name">
-        player
+        {{ player.nickname }}
     </div>
-    <div class="score">0</div>
+    <div class="score">
+        {{ player.score }}p
+    </div>
 </div>
 </template>
 <script>
@@ -16,6 +18,10 @@
         components: {
             'icon': httpVueLoader('../atoms/icon.vue'),
         },
+        props: ['player'],
+        mounted() {
+            console.log(this.player)
+        }
     }
 </script>
 <style scoped>
@@ -26,9 +32,12 @@
     align-items: center;
     padding: 3px;
     height: 3vw;
-    width: 45%;
 }
 .player-name {
     margin-left: 2px;
+}
+
+.score {
+    margin-left:0.5vw;
 }
 </style>

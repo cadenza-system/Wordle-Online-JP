@@ -5,7 +5,7 @@
             <wordle-board class="wordle-board" ref="board" correct-anser="アリガトウ"></wordle-board>
             <div class="bottom-row">
                 <div class="bottom-row-inner">
-                    <player-list></player-list>
+                    <player-list :player-list="playerList"></player-list>
                     <wordle-keyboard class="wordle-keyboard" @enter="enter"></wordle-keyboard>
                 </div>
             </div>
@@ -16,6 +16,7 @@
     module.exports = {
         data: function(){
             return {
+                playerList: State.playerList.list
             }
         },
         components: {

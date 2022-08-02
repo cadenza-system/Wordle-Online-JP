@@ -20,7 +20,25 @@ app.set('port', port);
  */
 
 let server = http.createServer(app);
+let io = require('socket.io')(server);
+io.on('connection', function(socket) {
 
+    // ルーム作成
+    socket.on('create-room', function(data) {
+        console.log(data)
+        io.emit('create-room', {
+            roomId: data.roomId,
+            sender: data.hostPlayer.id,
+            playerList: [{
+                id: data.hostPlayer.id,
+                color: 'red',
+                nickname: data.hostPlayer.nickname,
+                score: 0,
+                isHost: true
+            }]
+        });
+    });
+});
 /**
  * Listen on provided port, on all network interfaces.
  */

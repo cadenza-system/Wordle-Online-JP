@@ -8,7 +8,7 @@
                         ENTER YOUR NICKNAME
                     </label>
                     <div id="nickname">
-                        <input type="text">
+                        <input type="text" v-model="nickname">
                     </div>
                 </div>
                 <div>
@@ -22,6 +22,8 @@
     module.exports = {
         data: function(){
             return {
+                erroeMessage: null,
+                nickname: '',
             }
         },
         components: {
@@ -29,9 +31,40 @@
         },
         methods: {
             createRoom() {
-                console.log(State.state)
-                this.$router.push('/game?room-id=')
+                // バリデーション
+                this.validate()
+
+                if (this.errorMessage) {
+                    alert(this.errorMessage)
+                    return
+                }
+
+                // MOCK
+                //State.playerList = new PlayerList(Mock.playerList)
+
+                // TODO socked
+  
+
+                State.socket.emitCreateRoom(this.nickname)
+            },
+            toGame() {
+                this.$router.push(`/game?room-id=${State.roomId}`)
+            },
+            validate() {
+                this.errorMessage = ''
+                if (!this.nickname) {
+                    this.errorMessage = 'ニックネームを入力してください'
+                    return
+                }
+
+                if (this.nickname.length > 10) {
+                    this.errorMessage = 'ニックネームは10文字までです'
+                    return
+                }
             }
+        },
+        mounted() {
+            State.socket.onCreateRoom(this.toGame)
         }
     }
 </script>

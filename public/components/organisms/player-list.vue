@@ -1,10 +1,8 @@
 <template>
 <div id="player-list">
-    <player-info></player-info>
-    <player-info></player-info>
-    <player-info></player-info>
-    <player-info></player-info>
-    <player-info></player-info>
+    <div v-for="player in playerList" :key="player.id">
+        <player-info :player="player"></player-info>
+    </div>
 </div>
 </template>
 <script>
@@ -16,6 +14,7 @@
         components: {
             'player-info': httpVueLoader('../molecules/player-info.vue'),
         },
+        props: ["playerList"]
     }
 </script>
 <style scoped>
@@ -25,5 +24,6 @@
     width: 20vw;
     height: 100%;
     align-items: center;
+    justify-content: space-around;
 }
 </style>

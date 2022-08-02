@@ -3,7 +3,7 @@ const routes = [
     { path: '/game', component: httpVueLoader('./components/pages/game.vue') },
 ];
 
-const router = new VueRouter({routes});
+const router = new VueRouter({ routes });
 
 let app = new Vue({
     el: '#app',
@@ -12,8 +12,3 @@ let app = new Vue({
         'App': httpVueLoader('./components/app.vue'),
     },
 });
-
-
-function test() {
-    console.log("test")
-}
