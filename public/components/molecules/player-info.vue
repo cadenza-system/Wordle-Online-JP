@@ -18,10 +18,7 @@
         components: {
             'icon': httpVueLoader('../atoms/icon.vue'),
         },
-        props: ['player'],
-        mounted() {
-            console.log(this.player)
-        }
+        props: ['player']
     }
 </script>
 <style scoped>

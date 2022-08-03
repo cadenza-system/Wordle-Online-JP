@@ -48,7 +48,7 @@
                 State.socket.emitCreateRoom(this.nickname)
             },
             toGame() {
-                this.$router.push(`/game?room-id=${State.roomId}`)
+                this.$router.push(`/game?room-id=${State.roomId()}`)
             },
             validate() {
                 this.errorMessage = ''

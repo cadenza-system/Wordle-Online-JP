@@ -16,7 +16,7 @@
     module.exports = {
         data: function(){
             return {
-                playerList: State.playerList.list
+                playerList: State.playerList().list
             }
         },
         components: {

@@ -17,9 +17,9 @@ class Socket {
 
     onCreateRoom(to) {
         this.socket.on('create-room', (data) => {
-            State.roomId = data.roomId
-            State.playerId = data.sender
-            State.playerList = new PlayerList(data.playerList)
+            State.roomId(data.roomId)
+            State.playerId(data.sender)
+            State.playerList(data.playerList)
             to()
         });
     }
