@@ -1,21 +1,7 @@
 <template>
     <div id="home">
         <app-header></app-header>
-        <div class="content">
-            <div class="inner-content">
-                <div class="nickname-wrapper">
-                    <label for="nickname">
-                        ENTER YOUR NICKNAME
-                    </label>
-                    <div id="nickname">
-                        <input type="text" v-model="nickname">
-                    </div>
-                </div>
-                <div>
-                    <button @click="createRoom()">CREATE ROOM</button>
-                </div>
-            </div>
-        </div>
+        <nickname-input-area @push="createRoom" button-name="CREATE ROOM"></nickname-input-area>
     </div>
 </template>
 <script>
@@ -28,9 +14,11 @@
         },
         components: {
             'app-header': httpVueLoader('../organisms/header.vue'),
+            'nickname-input-area': httpVueLoader('../organisms/nickname-input-area.vue'),
         },
         methods: {
-            createRoom() {
+            createRoom(value) {
+                this.nickname = value
                 // バリデーション
                 this.validate()
 
@@ -38,13 +26,6 @@
                     alert(this.errorMessage)
                     return
                 }
-
-                // MOCK
-                //State.playerList = new PlayerList(Mock.playerList)
-
-                // TODO socked
-  
-
                 State.socket.emitCreateRoom(this.nickname)
             },
             toGame() {
@@ -91,9 +72,5 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-}
-
-input {
-
 }
 </style>

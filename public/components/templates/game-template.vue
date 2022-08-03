@@ -10,13 +10,17 @@
                 </div>
             </div>
         </div>
+        <div v-if="showJoinModal">
+            <join-modal @join="join"></join-modal>
+        </div>
     </div>
 </template>
 <script>
     module.exports = {
         data: function(){
             return {
-                playerList: State.playerList().list
+                playerList: State.playerList().list,
+                showJoinModal: true
             }
         },
         components: {
@@ -24,10 +28,15 @@
             'wordle-board': httpVueLoader('../organisms/wordle-board.vue'),
             'wordle-keyboard': httpVueLoader('../organisms/keyboard.vue'),
             'player-list': httpVueLoader('../organisms/player-list.vue'),
+            'join-modal': httpVueLoader('../organisms/join-modal.vue'),
         },
         methods: {
             enter(anser) {
                 this.$refs.board.setAnser(anser)
+            },
+            join(nickname) {
+                // TODO socket join
+                this.showJoinModal = false
             }
         }
     }
