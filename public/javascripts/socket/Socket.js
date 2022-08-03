@@ -8,7 +8,7 @@ class Socket {
     emitCreateRoom(nickname) {
         this.socket.emit('create-room', {
             roomId: createUuid(),
-            hostPlayer: {
+            sender: {
                 id: createUuid(),
                 nickname: nickname
             }
@@ -17,9 +17,9 @@ class Socket {
 
     onCreateRoom(to) {
         this.socket.on('create-room', (data) => {
-            State.roomId(data.roomId)
+            State.roomId(data.room.roomId)
             State.playerId(data.sender)
-            State.playerList(data.playerList)
+            State.playerList(data.room.playerList)
             to()
         });
     }

@@ -20,24 +20,51 @@ app.set('port', port);
  */
 
 let server = http.createServer(app);
+
+let roomStore = {}
+
 let io = require('socket.io')(server);
 io.on('connection', function(socket) {
 
     // ルーム作成
     socket.on('create-room', function(data) {
-        console.log(data)
-        io.emit('create-room', {
-            roomId: data.roomId,
-            sender: data.hostPlayer.id,
-            playerList: [{
-                id: data.hostPlayer.id,
-                color: 'red',
-                nickname: data.hostPlayer.nickname,
-                score: 0,
-                isHost: true
-            }]
+        socket.join(data.roomId)
+        roomStore[data.roomId] = {
+                roomId: data.roomId,
+                playerList: [{
+                    id: data.sender.id,
+                    color: 'red',
+                    nickname: data.sender.nickname,
+                    score: 0,
+                    isHost: true
+                }],
+                anserList: null
+            }
+            // 作成したルーム情報を返す
+        io.to(data.roomId).emit('create-room', {
+            sender: data.sender.id,
+            room: roomStore[data.roomId]
         });
     });
+
+    // ルームに接続
+    socket.on('join-room', function(data) {
+        socket.join(data.roomId)
+
+        // プレイヤーデータをプッシュ
+        roomStore[data.roomId].playerList.push({
+            id: data.sender.id,
+            color: 'red',
+            nickname: data.sender.nickname,
+            score: 0,
+            isHost: false
+        })
+
+        io.to(data.roomId).broadcast.emit('sync-room', {
+            sender: data.sender.id,
+            room: roomStore[data.roomId]
+        })
+    })
 });
 /**
  * Listen on provided port, on all network interfaces.
