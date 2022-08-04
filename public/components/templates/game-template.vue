@@ -38,6 +38,11 @@
                 // TODO socket join
                 this.showJoinModal = false
             }
+        },
+        mounted() {
+            if (State.existPlayerlist()) {
+                this.showJoinModal = false
+            }
         }
     }
 </script>

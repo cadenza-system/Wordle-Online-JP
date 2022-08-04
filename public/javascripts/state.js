@@ -10,12 +10,18 @@ class State {
         }
     }
 
+    static exsist() {
+        if (State.roomId()) {
+            return true
+        }
+        return false
+    }
+
     static playerList(list) {
         if (list) {
             sessionStorage.removeItem('player-list')
             sessionStorage.setItem('player-list', JSON.stringify(list))
         } else {
-            console.log(JSON.parse(sessionStorage.getItem('player-list')))
             return new PlayerList(JSON.parse(sessionStorage.getItem('player-list')))
         }
     }
@@ -27,5 +33,17 @@ class State {
         } else {
             return sessionStorage.getItem('player-id')
         }
+    }
+
+    static existPlayerlist() {
+        let playerId = State.playerId()
+        console.log(playerId)
+        for (const player of State.playerList().list) {
+            if (player.isMatch(playerId)) {
+                return true
+            }
+        }
+
+        return false
     }
 }
