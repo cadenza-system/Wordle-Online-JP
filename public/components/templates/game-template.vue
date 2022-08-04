@@ -5,7 +5,9 @@
             <wordle-board class="wordle-board" ref="board" correct-anser="アリガトウ"></wordle-board>
             <div class="bottom-row">
                 <div class="bottom-row-inner">
-                    <player-list :player-list="playerList"></player-list>
+                    <div v-if="playerList">
+                        <player-list :player-list="playerList"></player-list>
+                    </div>
                     <wordle-keyboard class="wordle-keyboard" @enter="enter"></wordle-keyboard>
                 </div>
             </div>
@@ -16,10 +18,11 @@
     </div>
 </template>
 <script>
+
     module.exports = {
         data: function(){
             return {
-                playerList: State.playerList().list,
+                playerList: null,
                 showJoinModal: true
             }
         },
@@ -34,15 +37,26 @@
             enter(anser) {
                 this.$refs.board.setAnser(anser)
             },
+            updatePlayerList() {
+                this.playerList = State.playerList().list
+            },
             join(nickname) {
                 // TODO socket join
                 this.showJoinModal = false
+                State.socket.emitRoomJoin(this.$route.query.roomid, nickname)
             }
         },
         mounted() {
+            State.socket.onSyncRoom(this.updatePlayerList)
+            let playerList = State.playerList().list
+            if (playerList) {
+                this.playerList = playerList
+            }
             if (State.existPlayerlist()) {
                 this.showJoinModal = false
+                return
             }
+            
         }
     }
 </script>

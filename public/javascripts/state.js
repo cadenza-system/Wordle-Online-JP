@@ -37,7 +37,6 @@ class State {
 
     static existPlayerlist() {
         let playerId = State.playerId()
-        console.log(playerId)
         for (const player of State.playerList().list) {
             if (player.isMatch(playerId)) {
                 return true

@@ -23,4 +23,23 @@ class Socket {
             to()
         });
     }
+
+    emitRoomJoin(roomId, nickname) {
+        this.socket.emit('join-room', {
+            roomId: roomId,
+            sender: createUuid(),
+            nickname: nickname
+        })
+
+        State.roomId(roomId)
+        State.playerId(nickname)
+    }
+
+    onSyncRoom(update) {
+        this.socket.on('sync-room', (data) => {
+            console.log('sync-room')
+            State.playerList(data.room.playerList)
+            update()
+        })
+    }
 }

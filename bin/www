@@ -52,15 +52,16 @@ io.on('connection', function(socket) {
         socket.join(data.roomId)
 
         // プレイヤーデータをプッシュ
+        console.log(data.roomId)
+        console.log(roomStore)
         roomStore[data.roomId].playerList.push({
-            id: data.sender.id,
+            id: data.id,
             color: 'red',
-            nickname: data.sender.nickname,
+            nickname: data.nickname,
             score: 0,
             isHost: false
         })
-
-        io.to(data.roomId).broadcast.emit('sync-room', {
+        io.to(data.roomId).emit('sync-room', {
             sender: data.sender.id,
             room: roomStore[data.roomId]
         })
