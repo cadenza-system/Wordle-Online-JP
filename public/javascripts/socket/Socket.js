@@ -3,6 +3,19 @@ class Socket {
         if (!this.socket) {
             this.socket = io()
         }
+        this.reconnectRoom()
+    }
+
+    reconnectRoom() {
+        let roomId = sessionStorage.getItem('room-id')
+        let playerId = sessionStorage.getItem('player-id')
+        if (!roomId) {
+            return
+        }
+        this.socket.emit('reconnect-room', {
+            roomId: roomId,
+            sender: playerId
+        })
     }
 
     emitCreateRoom(nickname) {
@@ -37,7 +50,6 @@ class Socket {
 
     onSyncRoom(update) {
         this.socket.on('sync-room', (data) => {
-            console.log('sync-room')
             State.playerList(data.room.playerList)
             update()
         })

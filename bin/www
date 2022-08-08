@@ -33,7 +33,7 @@ io.on('connection', function(socket) {
                 roomId: data.roomId,
                 playerList: [{
                     id: data.sender.id,
-                    color: 'red',
+                    color: '',
                     nickname: data.sender.nickname,
                     score: 0,
                     isHost: true
@@ -55,14 +55,23 @@ io.on('connection', function(socket) {
         console.log(data.roomId)
         console.log(roomStore)
         roomStore[data.roomId].playerList.push({
-            id: data.id,
-            color: 'red',
+            id: data.sender,
+            color: '',
             nickname: data.nickname,
             score: 0,
             isHost: false
         })
         io.to(data.roomId).emit('sync-room', {
             sender: data.sender.id,
+            room: roomStore[data.roomId]
+        })
+    })
+
+    socket.on('reconnect-room', function(data) {
+        socket.join(data.roomId)
+
+        io.to(data.roomId).emit('sync-room', {
+            sender: data.sender,
             room: roomStore[data.roomId]
         })
     })

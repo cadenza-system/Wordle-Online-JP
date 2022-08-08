@@ -7,14 +7,10 @@
 </template>
 <script>
     module.exports = {
-        data: function(){
-            return {
-            }
-        },
         components: {
             'player-info': httpVueLoader('../molecules/player-info.vue'),
         },
-        props: ["playerList"],
+        props: ["playerList"]
     }
 </script>
 <style scoped>

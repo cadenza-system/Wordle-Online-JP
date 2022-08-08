@@ -52,11 +52,10 @@
             if (playerList) {
                 this.playerList = playerList
             }
-            if (State.existPlayerlist()) {
+            if (State.playerId()) {
                 this.showJoinModal = false
                 return
             }
-            
         }
     }
 </script>
