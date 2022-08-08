@@ -1,7 +1,7 @@
 <template>
 <div id="player-list">
     <div v-for="player in playerList" :key="player.id">
-        <player-info :player="player"></player-info>
+        <player-info class="item" :player="player"></player-info>
     </div>
 </div>
 </template>
@@ -15,11 +15,8 @@
 </script>
 <style scoped>
 #player-list {
-    display: flex;
-    flex-wrap: wrap;
     width: 20vw;
     height: 100%;
-    align-items: center;
-    justify-content: space-around;
+    align-items: flex-start;
 }
 </style>

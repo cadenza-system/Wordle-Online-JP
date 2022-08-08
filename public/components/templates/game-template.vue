@@ -6,9 +6,12 @@
             <div class="bottom-row">
                 <div class="bottom-row-inner">
                     <div v-if="playerList">
-                        <player-list :player-list="playerList"></player-list>
+                        <player-list class="bottom-row-item" :player-list="playerList"></player-list>
                     </div>
-                    <wordle-keyboard class="wordle-keyboard" @enter="enter"></wordle-keyboard>
+                    <wordle-keyboard class="wordle-keyboard bottom-row-item" @enter="enter"></wordle-keyboard>
+                    <div class="bottom-row-item right-area">
+                        設定とか
+                    </div>
                 </div>
             </div>
         </div>
@@ -88,8 +91,16 @@
 }
 .bottom-row-inner {
     display: flex;
-    justify-content:space-around;
-    width: 60%;
+    width: 90%;
     height: 100%;
+}
+
+.bottom-row-item {
+    margin: 0 3vw;
+}
+.right-area {
+    background-color: aquamarine;
+    height: 100%;
+    width: 100%;
 }
 </style>
