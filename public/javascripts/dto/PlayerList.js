@@ -13,6 +13,8 @@ class PlayerList {
                 )
             )
         }
+
+        this.setColor()
     }
 
     getPlayer(id) {
@@ -20,6 +22,21 @@ class PlayerList {
             if (player.isMatch(id)) {
                 return player
             }
+        }
+    }
+
+    setColor() {
+        let colorList = [
+            'red',
+            'blue',
+            'yellow',
+            'green',
+            'pink',
+            'purple'
+        ]
+
+        for (let i = 0; i < this.list.length; i++) {
+            this.list[i].color = colorList[i]
         }
     }
 }
