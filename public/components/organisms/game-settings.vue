@@ -4,13 +4,13 @@
     <div class="setting-content">
         <div class="item round">
             <div class="item-name">ラウンド</div>
-            <input type="number" name="round" id="round" value="1" min="1" max="10">
+            <input type="number" v-model="round" id="round" value="1" min="1" max="10">
         </div>
         <div class="item limit">
             <div class="item-name">解答可能数</div>
-            <input type="number" name="limit" id="limit" value="6" min="6" max="24">
+            <input type="number" v-model="limit" id="limit" value="6" min="6" max="24">
         </div>
-        <div class="item start">
+        <div class="item start" v-on:click="gameStart">
             <app-button>START</app-button>
         </div>
     </div>
@@ -23,12 +23,20 @@
     module.exports = {
         data: function(){
             return {
+                round: 1,
+                limit: 6
             }
         },
         props: ['isHost'],
         components: {
             'app-button': httpVueLoader('../atoms/button.vue'),
         },
+        methods: {
+            gameStart() {
+                console.log(this.round)
+                console.log(this.limit)
+            }
+        }
     }
 </script>
 <style scoped>
