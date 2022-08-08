@@ -1,7 +1,7 @@
 <template>
 <div id="wordle-board">
     <div class="panel-row" v-for="i in limit" v-bind:key="i">
-        <wordle-panel-row ref="row" :correct-anser="correctAnserArr"></wordle-panel-row>
+        <wordle-panel-row ref="row" :correct-anser="correctAnserArr" :anser="getAnser(i)"></wordle-panel-row>
     </div>
 </div>
 </template>
@@ -17,11 +17,22 @@
         components: {
             'wordle-panel-row': httpVueLoader('../molecules/wordle-panel-row.vue'),
         },
+        methods: {
+            reloadAnser(anserList) {
+                for (let i = 0; i < anserList.length; i ++) {
+                    this.$refs.row[i].setAnser(from[i])
+                }
+            },
+            getAnser(index){
+                return this.anserList[index] ? this.anserList[index] : []
+            }
+        },
         mounted() {
             this.correctAnserArr = this.correctAnser.split('')
         },
         watch: {
             anserList: function(from) {
+                console.log(this.anserList)
                 for (let i = 0; i < from.length; i ++) {
                     this.$refs.row[i].setAnser(from[i])
                 }

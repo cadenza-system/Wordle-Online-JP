@@ -43,10 +43,8 @@
                     anser
                 )
             },
-            updatePlayerList() {
+            update() {
                 this.playerList = State.playerList().list
-            },
-            updateAnserList() {
                 this.anserList = State.anserList().list
             },
             join(nickname) {
@@ -56,8 +54,8 @@
             }
         },
         mounted() {
-            State.socket.onSyncRoom(this.updatePlayerList)
-            State.socket.onSyncAnser(this.updateAnserList)
+            State.socket.onSyncRoom(this.update)
+            State.socket.onSyncAnser(this.update)
             let playerList = State.playerList().list
             if (playerList) {
                 this.playerList = playerList

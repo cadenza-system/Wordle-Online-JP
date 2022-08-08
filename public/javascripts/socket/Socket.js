@@ -52,6 +52,7 @@ class Socket {
     onSyncRoom(update) {
         this.socket.on('sync-room', (data) => {
             State.playerList(data.room.playerList)
+            State.anserList(data.room.anserList)
             update()
         })
     }

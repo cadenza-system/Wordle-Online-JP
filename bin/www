@@ -68,6 +68,7 @@ io.on('connection', function(socket) {
     socket.on('reconnect-room', function(data) {
         socket.join(data.roomId)
 
+        console.log(data)
         io.to(data.roomId).emit('sync-room', {
             sender: data.sender,
             room: roomStore[data.roomId]
