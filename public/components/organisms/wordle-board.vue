@@ -1,7 +1,7 @@
 <template>
 <div id="wordle-board">
     <div class="panel-row" v-for="i in limit" v-bind:key="i">
-        <wordle-panel-row ref="row" :correct-anser="correctAnserArr" :anser="getAnser(i)"></wordle-panel-row>
+        <wordle-panel-row ref="row" :correct-anser="correctAnserArr" :anser="getAnser(i - 1)"></wordle-panel-row>
     </div>
 </div>
 </template>
@@ -24,6 +24,9 @@
                 }
             },
             getAnser(index){
+                if (!this.anserList) {
+                    return []
+                }
                 return this.anserList[index] ? this.anserList[index] : []
             }
         },
@@ -32,7 +35,6 @@
         },
         watch: {
             anserList: function(from) {
-                console.log(this.anserList)
                 for (let i = 0; i < from.length; i ++) {
                     this.$refs.row[i].setAnser(from[i])
                 }
