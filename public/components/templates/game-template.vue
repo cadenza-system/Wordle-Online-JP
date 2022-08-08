@@ -2,7 +2,7 @@
     <div id="game-template">
         <app-header></app-header>
         <div class="content">
-            <wordle-board class="wordle-board" ref="board" correct-anser="アリガトウ"></wordle-board>
+            <wordle-board class="wordle-board" ref="board" :anser-list="anserList" correct-anser="アリガトウ"></wordle-board>
             <div class="bottom-row">
                 <div class="bottom-row-inner">
                     <div v-if="playerList">
@@ -23,6 +23,7 @@
         data: function(){
             return {
                 playerList: null,
+                anserList: null,
                 showJoinModal: true
             }
         },
@@ -35,10 +36,18 @@
         },
         methods: {
             enter(anser) {
-                this.$refs.board.setAnser(anser)
+                // this.$refs.board.setAnser(anser)
+                State.socket.emitAnser(
+                    State.roomId(),
+                    State.playerId(),
+                    anser
+                )
             },
             updatePlayerList() {
                 this.playerList = State.playerList().list
+            },
+            updateAnserList() {
+                this.anserList = State.anserList().list
             },
             join(nickname) {
                 // TODO socket join
@@ -48,6 +57,7 @@
         },
         mounted() {
             State.socket.onSyncRoom(this.updatePlayerList)
+            State.socket.onSyncAnser(this.updateAnserList)
             let playerList = State.playerList().list
             if (playerList) {
                 this.playerList = playerList

@@ -38,19 +38,35 @@ class Socket {
     }
 
     emitRoomJoin(roomId, nickname) {
+        let senderId = createUuid()
         this.socket.emit('join-room', {
             roomId: roomId,
-            sender: createUuid(),
+            sender: senderId,
             nickname: nickname
         })
 
         State.roomId(roomId)
-        State.playerId(nickname)
+        State.playerId(senderId)
     }
 
     onSyncRoom(update) {
         this.socket.on('sync-room', (data) => {
             State.playerList(data.room.playerList)
+            update()
+        })
+    }
+
+    emitAnser(roomId, sender, anser) {
+        this.socket.emit('anser', {
+            roomId: roomId,
+            sender: sender,
+            anser: anser
+        })
+    }
+
+    onSyncAnser(update) {
+        this.socket.on('sync-anser', (data) => {
+            State.anserList(data.room.anserList)
             update()
         })
     }

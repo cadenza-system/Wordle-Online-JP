@@ -38,7 +38,7 @@ io.on('connection', function(socket) {
                     score: 0,
                     isHost: true
                 }],
-                anserList: null
+                anserList: []
             }
             // 作成したルーム情報を返す
         io.to(data.roomId).emit('create-room', {
@@ -52,8 +52,6 @@ io.on('connection', function(socket) {
         socket.join(data.roomId)
 
         // プレイヤーデータをプッシュ
-        console.log(data.roomId)
-        console.log(roomStore)
         roomStore[data.roomId].playerList.push({
             id: data.sender,
             color: '',
@@ -71,6 +69,18 @@ io.on('connection', function(socket) {
         socket.join(data.roomId)
 
         io.to(data.roomId).emit('sync-room', {
+            sender: data.sender,
+            room: roomStore[data.roomId]
+        })
+    })
+
+    socket.on('anser', function(data) {
+        roomStore[data.roomId].anserList.push({
+            sender: data.sender,
+            anser: data.anser
+        })
+
+        io.to(data.roomId).emit('sync-anser', {
             sender: data.sender,
             room: roomStore[data.roomId]
         })

@@ -13,24 +13,19 @@
                 correctAnserArr: []
             }
         },
-        props: ['correctAnser'],
+        props: ['correctAnser', 'anserList'],
         components: {
             'wordle-panel-row': httpVueLoader('../molecules/wordle-panel-row.vue'),
         },
-        methods: {
-            setAnser(anser) {
-                let setFlg = false
-                this.$refs.row.forEach(element => {
-                    if (element.isBlank() && !setFlg) {
-                        element.setAnser([anser[0], anser[1], anser[2], anser[3], anser[4]])
-                        setFlg = true
-                        return
-                    }
-                });
-            }
-        },
         mounted() {
             this.correctAnserArr = this.correctAnser.split('')
+        },
+        watch: {
+            anserList: function(from) {
+                for (let i = 0; i < from.length; i ++) {
+                    this.$refs.row[i].setAnser(from[i])
+                }
+            }
         }
     }
 </script>

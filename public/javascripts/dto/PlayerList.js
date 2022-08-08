@@ -18,7 +18,7 @@ class PlayerList {
     }
 
     getPlayer(id) {
-        for (player in this.list) {
+        for (let player of this.list) {
             if (player.isMatch(id)) {
                 return player
             }

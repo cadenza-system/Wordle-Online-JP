@@ -25,10 +25,13 @@
         },
         methods: {
             setAnser(anser) {
-                this.anser = anser
+                this.anser = anser.anser
                 this.anser.forEach((char, index) => {
                     this.panelColors.push(this.getClass(char, index))
                 });
+
+                this.playerColor = State.playerList().getPlayer(anser.sender).color
+                console.log(State.playerList().getPlayer(anser.sender))
             },
             isBlank() {
                 if (this.anser.length == 0) {

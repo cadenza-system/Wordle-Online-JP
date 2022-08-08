@@ -12,6 +12,15 @@
             }
         },
         props: ['color']
+        ,
+        watch: {
+            color: function(from) {
+                this.style = {
+                    backgroundColor: from
+                }
+                
+            }
+        }
     }
 </script>
 <style scoped>

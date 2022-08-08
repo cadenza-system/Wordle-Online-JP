@@ -26,6 +26,15 @@ class State {
         }
     }
 
+    static anserList(list) {
+        if (list) {
+            sessionStorage.removeItem('anser-list')
+            sessionStorage.setItem('anser-list', JSON.stringify(list))
+        } else {
+            return new AnserList(JSON.parse(sessionStorage.getItem('anser-list')))
+        }
+    }
+
     static playerId(id) {
         if (id) {
             sessionStorage.removeItem('player-id')
