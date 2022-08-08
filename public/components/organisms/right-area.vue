@@ -16,8 +16,9 @@
 </script>
 <style scoped>
 #right-area {
-    background-color: aquamarine;
-    height: 100%;
+    border: 2px lightgray solid;
+    height: 90%;
     width: 100%;
+    padding: 2vh 2vw;
 }
 </style>

@@ -1,6 +1,6 @@
 <template>
 <div id="button">
-    <div v-if="!image">
+    <div class="text" :class="clazz" v-if="!image">
         <slot></slot>
     </div>
     <img :src="image">
@@ -10,23 +10,54 @@
     module.exports = {
         data: function(){
             return {
+                clazz: ""
             }
         },
-        props: ['image']
+        props: {
+            disabled: {
+                type: Boolean,
+                default: false,
+                required: false
+            },
+            image: {
+                type: String,
+                default: null,
+                required: false
+            }
+        },
+        mounted () {
+            if (this.disabled) {
+                this.clazz = 'disabled'
+            } else {
+                this.clazz = 'enabled'
+            }
+        }
         // components: {
         //     '': httpVueLoader(''),
         // },
     }
 </script>
 <style scoped>
+
 #button {
-    background-color: whitesmoke;
     user-select: none;
+}
+.enabled {
+    background-color: whitesmoke;
     cursor: pointer;
     cursor: hand;
 }
 
-#button:active {
+.enabled:active {
     background-color: lightgray;
 }
+
+.disabled {
+    background-color: lightgray;
+}
+
+.text {
+    text-align: center;
+}
+
 </style>

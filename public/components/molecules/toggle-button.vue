@@ -11,21 +11,43 @@
                 toggled: false,
                 style: {
                     width: this.width
-                }
+                },
+                clazz: ''
             }
         },
         components: {
             'wordle-panel-row': httpVueLoader('../molecules/wordle-panel-row.vue'),
         },
-        props: ['text-left', 'text-right', 'width'],
+        props: {
+            'text-left': {
+                required: true
+            }, 
+            'text-right': {
+                required: true
+            }, 
+            width: {
+                required: true
+            },
+            disabled: {
+                type: Boolean,
+                default: false,
+                required: false
+            },
+        },
         methods: {
             clickLeft: function() {
+                if (this.disabled) {
+                    return
+                }
                 if (this.toggled) {
                     this.toggled = false
                     this.$emit('toggle', false)
                 }
             },
             clickRight: function() {
+                if (this.disabled) {
+                    return
+                }
                 if (!this.toggled) {
                     this.toggled = true
                     this.$emit('toggle', true)
