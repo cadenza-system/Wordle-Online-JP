@@ -52,7 +52,6 @@
             }
         },
         mounted() {
-           console.log(this.anser)
             if (this.anser.anser) {
                 this.anserView = this.anser.anser
                 this.playerColor = State.playerList().getPlayer(this.anser.sender).color

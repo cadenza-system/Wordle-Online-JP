@@ -9,7 +9,7 @@
     module.exports = {
         data: function(){
             return {
-                limit: 18,
+                limit: 24,
                 correctAnserArr: []
             }
         },

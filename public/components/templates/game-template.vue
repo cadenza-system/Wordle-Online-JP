@@ -9,9 +9,9 @@
                         <player-list class="bottom-row-item" :player-list="playerList"></player-list>
                     </div>
                     <wordle-keyboard class="wordle-keyboard bottom-row-item" @enter="enter"></wordle-keyboard>
-                    <div class="bottom-row-item right-area">
-                        設定とか
-                    </div>
+                    <right-area class="bottom-row-item right-area">
+                        <game-settings :is-host="isHost"></game-settings>
+                    </right-area>
                 </div>
             </div>
         </div>
@@ -27,7 +27,8 @@
             return {
                 playerList: null,
                 anserList: null,
-                showJoinModal: true
+                showJoinModal: true,
+                isHost: false
             }
         },
         components: {
@@ -36,6 +37,8 @@
             'wordle-keyboard': httpVueLoader('../organisms/keyboard.vue'),
             'player-list': httpVueLoader('../organisms/player-list.vue'),
             'join-modal': httpVueLoader('../organisms/join-modal.vue'),
+            'right-area': httpVueLoader('../organisms/right-area.vue'),
+            'game-settings': httpVueLoader('../organisms/game-settings.vue')
         },
         methods: {
             enter(anser) {
@@ -49,6 +52,7 @@
             update() {
                 this.playerList = State.playerList().list
                 this.anserList = State.anserList().list
+                this.isHost = State.playerList().getPlayer(State.playerId()).isHost
             },
             join(nickname) {
                 // TODO socket join
@@ -98,9 +102,5 @@
 .bottom-row-item {
     margin: 0 3vw;
 }
-.right-area {
-    background-color: aquamarine;
-    height: 100%;
-    width: 100%;
-}
+
 </style>
